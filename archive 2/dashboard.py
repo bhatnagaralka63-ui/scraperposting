@@ -4,7 +4,7 @@ import pandas as pd
 st.set_page_config(page_title="Indian Job Market Dashboard", layout="wide")
 
 # Load data
-df = pd.read_csv('cleaned_jobs.csv')
+df = pd.read_csv('archive 2/cleaned_jobs.csv')
 
 st.title("📊 Indian Job Market Dashboard")
 st.markdown("Analysis of job postings scraped from LinkedIn, focused on the Indian market.")
@@ -12,7 +12,7 @@ st.markdown("Analysis of job postings scraped from LinkedIn, focused on the Indi
 # Top-level stats
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Job Listings", len(df))
-col2.metric("Avg. Applicants per Job", f"{df['no_of_application'].mean():.0f}")
+col2.metric("Avg. Applsicants per Job", f"{df['no_of_application'].mean():.0f}")
 col3.metric("Salary Transparency", f"{(df['salary_mentioned'].sum() / len(df)) * 100:.1f}%")
 
 st.divider()
