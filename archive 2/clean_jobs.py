@@ -22,9 +22,13 @@ df['city'] = df['location'].apply(lambda x: str(x).split(',')[0].strip())
 df['no_of_application'] = pd.to_numeric(df['no_of_application'], errors='coerce')
 
 # Keep only the useful columns for analysis
-clean_df = df[['job_ID', 'clean_title', 'city', 'company_name', 'work_type',
-               'no_of_employ', 'no_of_application', 'posted_day_ago',
-               'salary_mentioned', 'job_details']].copy()
+city_map = {"New Delhi": "Delhi", "Bangalore": "Bengaluru", "Gurgaon": "Gurugram"}
+df['city'] = df['location'].apply(lambda x: str(x).split(',')[0].strip())
+df['city'] = (df['city']
+              .str.replace('Greater ', '', regex=False)
+              .str.replace(' Area', '', regex=False)
+              .replace(city_map))
+df = df[df['city'] != 'India']
 
 # Remove exact duplicate listings
 clean_df = clean_df.drop_duplicates(subset=['clean_title', 'company_name', 'city'])
