@@ -1,4 +1,4 @@
-    # ScraperPosting
+# ScraperPosting
 
 A Python-based web scraping application with an interactive Streamlit interface for collecting and processing web data.
 
